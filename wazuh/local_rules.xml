@@ -18,36 +18,29 @@
 
 </group>
 
-
 <group name="exceptions,">
-
-  <rule id="100002" level="0">
-    <if_sid>60137</if_sid>
+    <rule id="100002" level="0">
+        <if_sid>60137</if_sid>
+        <!-- <field name="win.eventdata.targetUserName">emdsIfeServiceAccount</field> -->
+        <field name="win.eventdata.targetUserName">saservers</field>
+        <description>"60137 Rule Exception"</description>
+    </rule>
+  
+    <rule id="100003" level="0">
+        <if_sid>60106</if_sid>
     <!-- <field name="win.eventdata.targetUserName">emdsIfeServiceAccount</field> -->
-    <field name="win.eventdata.targetUserName">saservers</field>
-    <description>"60137 Rule Exception"</description>
-  </rule>
+        <field name="win.eventdata.targetUserName">saservers</field>
+        <description>"60106 Rule Exception"</description>
+    </rule>
   
-  
- <rule id="100003" level="0">
-    <if_sid>60106</if_sid>
-    <!-- <field name="win.eventdata.targetUserName">emdsIfeServiceAccount</field> -->
-    <field name="win.eventdata.targetUserName">saservers</field>
-    <description>"60106 Rule Exception"</description>
-  </rule>
-  
-  <rule id="100111" level="5">
-      <if_sid>62101</if_sid>
-      <field name="win.system.eventID">^1121$</field>
-      <description>Microsoft Defender Exploit Guard has blocked an operation</description>
-      <options>no_full_log</options>
-      <group>pci_dss_5.1,pci_dss_5.2,pci_dss_10.6.1,pci_dss_11.4,gpg13_4.2,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_SI.3,nist_800_53_AU.6,nist_800_53_SI.4,tsc_A1.2,tsc_CC7.2,tsc_CC7.3,tsc_CC6.1,tsc_CC6.8,</group>
-  </rule>
-  
-  
+    <rule id="100111" level="5">
+        <if_sid>62101</if_sid>
+        <field name="win.system.eventID">^1121$</field>
+        <description>Microsoft Defender Exploit Guard has blocked an operation by ($(win.eventdata.processName))</description>
+        <options>no_full_log</options>
+        <group>pci_dss_5.1,pci_dss_5.2,pci_dss_10.6.1,pci_dss_11.4,gpg13_4.2,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_SI.3,nist_800_53_AU.6,nist_800_53_SI.4,tsc_A1.2,tsc_CC7.2,tsc_CC7.3,tsc_CC6.1,tsc_CC6.8,</group>
+    </rule>
 </group>
-
-
 
 <group name="sysmon,sysmon_process-anomalies,">
     <rule id="255000" level="12">
@@ -387,43 +380,43 @@
         <match>getfilecounts.vbs</match>
         <description>Exclude</description>
     </rule>
-   <rule id="255063" level="0">
+    <rule id="255063" level="0">
         <if_sid>255050</if_sid>
         <match>xj6r_ru4.cmdline</match>
         <description>Exclude</description>
     </rule>
-   <rule id="255065" level="0">
+    <rule id="255065" level="0">
         <if_group>sysmon_event1</if_group>
         <field name="win.eventdata.Image">conhost.exe</field>
         <description>Mimikatz Detection Parent Image $(win.eventdata.parentimage)</description>
     </rule>
-   <rule id="255066" level="12">
+    <rule id="255066" level="12">
         <if_sid>255065</if_sid>
         <field name="win.eventdata.ParentImage">mimikatz.exe</field>
         <description>Mimikatz Detection Image: $(win.eventdata.parentimage)</description>
     </rule>
-   <rule id="255067" level="12">
+    <rule id="255067" level="12">
         <if_sid>255032</if_sid>
         <field name="win.eventdata.currentDirectory">AppData</field>
         <description>Detects a suspicious command line execution that includes an URL and AppData</description>
     </rule>
-   <rule id="255068" level="12">
+    <rule id="255068" level="12">
         <if_sid>255041</if_sid>
         <field name="win.eventdata.currentDirectory">AppData</field>
         <description>Detects a suspicious command line execution that includes an URL and AppData</description>
     </rule>
-<!--
-    <rule id="255069" level="12">
-        <if_sid>255017</if_sid>
-        <match>!172.</match>
-        <description>Detects a rundll32 that communicates with public IP addresses</description>
-    </rule>
-    <rule id="255070" level="12">
-        <if_sid>255017</if_sid>
-        <match>!10.</match>
-        <description>Detects a rundll32 that communicates with public IP addresses</description>
-    </rule>
--->
+    <!--
+        <rule id="255069" level="12">
+            <if_sid>255017</if_sid>
+            <match>!172.</match>
+            <description>Detects a rundll32 that communicates with public IP addresses</description>
+        </rule>
+        rule id="255070" level="12">
+            <if_sid>255017</if_sid>
+            <match>!10.</match>
+            <description>Detects a rundll32 that communicates with public IP addresses</description>
+        </rule>
+    -->
     <rule id="255071" level="12">
         <if_group>sysmon_event1</if_group>
         <field name="win.eventdata.commandline">AppData</field>
