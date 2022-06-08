@@ -40,6 +40,12 @@
         <options>no_full_log</options>
         <group>pci_dss_5.1,pci_dss_5.2,pci_dss_10.6.1,pci_dss_11.4,gpg13_4.2,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_SI.3,nist_800_53_AU.6,nist_800_53_SI.4,tsc_A1.2,tsc_CC7.2,tsc_CC7.3,tsc_CC6.1,tsc_CC6.8,</group>
     </rule>
+    <rule id="100112" level="0">
+        <if_sid>60137,60106</if_sid>
+        <field name="win.system.computer">DB.lakeland.local</field>
+        <description>Windows User Logoff</description>
+        <options>no_full_log</options>
+    <group>pci_dss_10.2.5,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
 </group>
 
 <group name="sysmon,sysmon_process-anomalies,">
